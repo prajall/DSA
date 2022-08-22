@@ -10,38 +10,44 @@ void display(int list[], int n){
 int main()
 {
 	int list[10]={36, 34, 43, 11, 15, 20, 28, 45, 27, 32};
-	int left,right,pivot,size;
+	int left,right,pivot = 0,size;
 	int temp;
 		
-	pivot = list[0];
-	left = 1;
 	size = sizeof(list)/sizeof(list[0]);
-	right = (size-1);
+	
 	
 	display(list,size);
 	cout<<endl;
 	
-	for(; left<=size; left++){
-		if(list[left] > list[pivot])
-		break;
+	for(int i = 0; i<10; i++){
+		left = 1;
+		right = (size-1);
+		
+		for(; left<=size; left++){
+			if(list[left] > list[pivot])
+			break;
+		}
+		for(; right >= 1; right--){
+			if(list[right] < list[pivot])
+			break;
+		}
+		if (left >= right){
+			temp = list[pivot];
+			list[pivot] = list[right];
+			list[right] = temp;
+		}
+		else{
+			temp = list[left];
+			list[left] = list[right];
+			list[right] = temp;
+		}
+		display(list,size);
+		cout<<endl;
 	}
-	for(; right >= 1; right--){
-		if(list[right] < list[pivot])
-		break;
-	}
-	if (left >= right){
-		temp = list[pivot];
-		list[pivot] = list[right];
-		list[right] = temp;
-	}
-	else{
-		temp = list[left];
-		list[left] = list[right];
-		list[right] = temp;
-	}
+	
 //		swap(list[left],list[right]);
 		
-	display(list,size);
+	
 	
 //	if (list[left] > list[pivot]){
 //		halt
